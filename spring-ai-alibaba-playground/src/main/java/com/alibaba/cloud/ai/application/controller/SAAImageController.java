@@ -34,8 +34,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * @author yuluo
- * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
+ * SAA图像控制器，负责处理图像相关的API请求
+ * 
+ * @author yuluo - 项目作者
+ * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a> - 作者联系邮箱
  */
 
 @RestController
@@ -47,13 +49,22 @@ public class SAAImageController {
 
 	private final SAAImageService imageService;
 
+	/**
+	 * 构造函数，通过依赖注入初始化图像服务实例
+	 * 
+	 * @param imageService 图像服务实例
+	 */
 	public SAAImageController(SAAImageService imageService) {
 		this.imageService = imageService;
 	}
 
 	/**
-	 * Image Recognition
-	 * prompt can be empty
+	 * 图像识别接口，将图像转换为文本描述
+	 * 注意：prompt 参数可以为空
+	 * 
+	 * @param prompt 用户输入的提示内容（可选，有默认值）
+	 * @param image 上传的图像文件
+	 * @return 响应式字符串流，包含图像识别结果
 	 */
 	@UserIp
 	@PostMapping("/image2text")
@@ -77,6 +88,15 @@ public class SAAImageController {
 		return res;
 	}
 
+	/**
+	 * 文本到图像生成接口，根据文本提示生成图像
+	 * 
+	 * @param response HTTP响应对象
+	 * @param prompt 用户输入的文本提示
+	 * @param style 图像生成风格（可选，有默认值）
+	 * @param resolution 图像分辨率（可选，有默认值）
+	 * @return 统一返回结果，表示操作成功
+	 */
 	@UserIp
 	@GetMapping("/text2image")
 	@Operation(summary = "DashScope Image Generation")

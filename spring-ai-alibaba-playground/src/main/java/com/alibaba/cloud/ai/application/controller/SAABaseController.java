@@ -15,51 +15,68 @@
  * limitations under the License.
  */
 
-package com.alibaba.cloud.ai.application.controller;
+package com.alibaba.cloud.ai.application.controller; // 定义控制器包路径
 
-import java.util.Map;
-import java.util.Set;
+import java.util.Map; // 引入Java映射工具类
+import java.util.Set; // 引入Java集合工具类
 
-import com.alibaba.cloud.ai.application.entity.result.Result;
-import com.alibaba.cloud.ai.application.service.SAABaseService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import com.alibaba.cloud.ai.application.entity.result.Result; // 引入统一返回结果类
+import com.alibaba.cloud.ai.application.service.SAABaseService; // 引入基础服务接口
+import io.swagger.v3.oas.annotations.tags.Tag; // 引入Swagger标签注解
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping; // 引入Spring GET映射注解
+import org.springframework.web.bind.annotation.RequestMapping; // 引入Spring请求映射注解
+import org.springframework.web.bind.annotation.RestController; // 引入Spring REST控制器注解
 
 /**
- * @author yuluo
- * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a>
+ * SAA基础控制器，负责处理系统基础信息相关的API请求
+ * 
+ * @author yuluo - 项目作者
+ * @author <a href="mailto:yuluo08290126@gmail.com">yuluo</a> - 作者联系邮箱
  */
 
-@RestController
-@Tag(name = "Base APIs")
-@RequestMapping("/api/v1")
+@RestController // 标识该类为REST控制器，返回JSON格式数据
+@Tag(name = "Base APIs") // Swagger标签，用于API文档分组
+@RequestMapping("/api/v1") // 设置控制器的基础路径为/api/v1
 public class SAABaseController {
 
-	private final SAABaseService baseService;
+	private final SAABaseService baseService; // 基础服务实例，用于获取系统基础信息
 
+	/**
+	 * 构造函数，通过依赖注入初始化基础服务实例
+	 * 
+	 * @param baseService 基础服务实例
+	 */
 	public SAABaseController(SAABaseService baseService) {
-		this.baseService = baseService;
+		this.baseService = baseService; // 初始化基础服务
 	}
 
-	@GetMapping("/dashscope/getModels")
+	/**
+	 * 获取DashScope可用模型列表的API接口
+	 * 
+	 * @return 包含模型信息的统一返回结果
+	 */
+	@GetMapping("/dashscope/getModels") // 映射GET请求到/dashscope/getModels端点
 	public Result<Set<Map<String, String>>> getDashScopeModels() {
 
-		Set<Map<String, String>> dashScope = baseService.getDashScope();
+		Set<Map<String, String>> dashScope = baseService.getDashScope(); // 调用基础服务获取DashScope模型集合
 
-		if (dashScope.isEmpty()) {
-			return Result.failed("No DashScope models found");
+		if (dashScope.isEmpty()) { // 如果模型集合为空
+			return Result.failed("No DashScope models found"); // 返回失败结果
 		}
 
-		return Result.success(dashScope);
+		return Result.success(dashScope); // 返回成功结果，包含模型集合
 	}
 
-	@GetMapping("/health")
+	/**
+	 * 健康检查API接口，用于检查应用程序是否正常运行
+	 * 
+	 * @return 包含健康状态信息的统一返回结果
+	 */
+	@GetMapping("/health") // 映射GET请求到/health端点
 	public Result<String> health() {
 
-		return Result.success("Spring AI Alibaba Playground is running......");
+		return Result.success("Spring AI Alibaba Playground is running......"); // 返回应用程序运行状态信息
 	}
 
 }

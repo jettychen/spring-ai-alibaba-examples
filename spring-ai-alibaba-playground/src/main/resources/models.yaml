@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+# DashScope (阿里云百炼) 支持的模型
 dashScope:
   - name: deepseek-r1
     description: "包含 671B 参数，激活 37B，在后训练阶段大规模使用了强化学习技术，在仅有极少标注数据的情况下，极大提升了模型推理能力，尤其在数学、代码、自然语言推理等任务上"

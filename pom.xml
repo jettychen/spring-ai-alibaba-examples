@@ -75,6 +75,7 @@
 		<module>spring-ai-alibaba-nl2sql-example</module>
 		<module>spring-ai-alibaba-studio-example</module>
 		<module>spring-ai-alibaba-graph-example</module>
+		<module>spring-ai-alibaba-playground</module>
 	</modules>
 
 	<dependencyManagement>

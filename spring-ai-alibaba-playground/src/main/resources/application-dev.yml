@@ -33,7 +33,7 @@ spring:
         access-key-secret: ${ADB_ACCESS_KEY_SECRET}
 
     dashscope:
-      api-key: ${AI_DASHSCOPE_API_KEY}
+      api-key: sk-55b4797bf69347ba85194bb56bfb0b68
     # 使用自定义增强的 mcp server config 替换
     # mcp:
     #   client:

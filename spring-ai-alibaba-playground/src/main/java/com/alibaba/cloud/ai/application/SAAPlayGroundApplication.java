@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory; // 引入SLF4J日志工厂类，用于创建日�
 
 import org.springframework.boot.SpringApplication; // 引入Spring Boot应用启动类
 import org.springframework.boot.autoconfigure.SpringBootApplication; // 引入Spring Boot自动配置注解
+import org.springframework.context.annotation.ComponentScan; // 引入组件扫描注解
 
 /**
  * Spring AI Alibaba Playground应用的主启动类
@@ -31,6 +32,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication; // 引入Sp
  */
 
 @SpringBootApplication // Spring Boot应用启动注解，包含@Configuration、@EnableAutoConfiguration和@ComponentScan
+@ComponentScan(basePackages = {"com.alibaba.cloud.ai.application", "com.alibaba.cloud.ai.ddd"}) // 扫描DDD架构包
 public class SAAPlayGroundApplication {
 
 	// 创建当前类的日志记录器，用于记录应用启动信息
